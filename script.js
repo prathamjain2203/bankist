@@ -82,6 +82,13 @@ const displayMovements = function (movements, sort = false) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
+const date = new Date();
+const month = `${date.getMonth()}`.padStart(2, 0);
+
+const day = `${date.getDate()}`.padStart(2, 0);
+
+const year = date.getFullYear();
+labelDate.textContent = `${day}/${month}/${year}`;
 
 accounts.forEach(function (accs) {
   accs.username = accs.owner
@@ -125,6 +132,7 @@ const updateUI = function (curr) {
 let currentaccount;
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
+  let timer = 300;
   currentaccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
@@ -137,7 +145,7 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
     updateUI(currentaccount);
-    let timer = 300;
+
     setInterval(function () {
       if (timer >= 0) {
         let min = Math.floor(timer / 60);
