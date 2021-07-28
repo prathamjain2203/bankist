@@ -1,3 +1,3 @@
 # bankist
 
-Bank Application.
+Bank Application with transfer money and request loan feature.
