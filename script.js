@@ -83,48 +83,6 @@ const displayMovements = function (movements, sort = false) {
   });
 };
 
-// const dogJulia = [3, 5, 2, 12, 7];
-// const dogKate = [4, 1, 15, 8, 3];
-// const checkdogs = function (dogsJulia, dogsKate) {
-//   const dogJuliacorrect = dogsJulia.slice();
-//   dogJuliacorrect.splice(0, 1);
-//   dogJuliacorrect.splice(2, 2);
-//   const dogs = dogJuliacorrect.concat(dogsKate);
-//   dogs.forEach(function (age, i) {
-//     if (age >= 3) {
-//       console.log(`Dog number ${i + 1} is an adult and ${age} years old`);
-//     } else {
-//       console.log(`Dog number ${i + 1} is still a puppy`);
-//     }
-//   });
-// };
-
-// checkdogs(dogJulia, dogKate);
-
-// const calcAverageHumanAge = function (dogsage) {
-//   const averageHumanAge = dogsage.map(function (age) {
-//     if (age <= 2) {
-//       return age * 2;
-//     } else {
-//       return 16 + age * 4;
-//     }
-//   });
-//   const adultdogs = averageHumanAge.filter(function (ages) {
-//     if (ages >= 18) {
-//       return ages;
-//     }
-//   });
-//   const calcAdultDogsAverage =
-//     adultdogs.reduce(function (acc, age) {
-//       return acc + age;
-//     }, 0) / adultdogs.length;
-//   console.log(averageHumanAge);
-
-//   console.log(adultdogs);
-//   console.log(calcAdultDogsAverage);
-// };
-// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-
 accounts.forEach(function (accs) {
   accs.username = accs.owner
     .toLowerCase()
@@ -132,8 +90,6 @@ accounts.forEach(function (accs) {
     .map(name => name[0])
     .join('');
 });
-
-// console.log(accounts);
 
 const displayBalance = function (acc) {
   acc.balance = acc.movements.reduce(function (accu, mov) {
@@ -166,45 +122,6 @@ const updateUI = function (curr) {
   displayMovements(curr.movements);
 };
 
-// const calcAverageHumanAge = function (dogsage) {
-//   const averageHumanAge = dogsage.map(function (age) {
-//     if (age <= 2) {
-//       return age * 2;
-//     } else {
-//       return 16 + age * 4;
-//     }
-//   });
-//   const adultdogs = averageHumanAge.filter(function (ages) {
-//     if (ages >= 18) {
-//       return ages;
-//     }
-//   });
-//   const calcAdultDogsAverage =
-//     adultdogs.reduce(function (acc, age) {
-//       return acc + age;
-//     }, 0) / adultdogs.length;
-//   console.log(averageHumanAge);
-
-//   console.log(adultdogs);
-//   console.log(calcAdultDogsAverage);
-// };
-// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-
-// const calcHumanAge = function (dogsage) {
-//   const humanage = dogsage
-//     .map(age => {
-//       if (age <= 2) {
-//         return age * 2;
-//       } else {
-//         return 16 + age * 4;
-//       }
-//     })
-//     .filter(ages => ages >= 18)
-//     .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
-//   console.log(humanage);
-// };
-
-// calcHumanAge([5, 2, 4, 1, 15, 8, 3]);
 let currentaccount;
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
@@ -274,52 +191,3 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentaccount.movements, !sorted);
   sorted = !sorted;
 });
-
-const dogs = [
-  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
-  { weight: 8, curFood: 200, owners: ['Matilda'] },
-  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
-  { weight: 32, curFood: 340, owners: ['Michael'] },
-];
-
-dogs.forEach(function (dog) {
-  dog.recommendedfood = Math.trunc(dog.weight ** 0.75 * 28);
-});
-console.log(dogs);
-
-const finddog = dogs.find(owns => owns.owners.find(name => name === 'Sarah'));
-console.log(finddog);
-if (finddog?.curFood >= finddog?.recommendedfood) {
-  // console.log('we find it');
-
-  console.log('Eating good');
-} else {
-  console.log('Eating bad');
-}
-
-const ownersEatTooMuch = dogs
-  .filter(dog => dog.curFood > dog.recommendedfood)
-  .map(dogs => dogs.owners)
-  .flat();
-
-const ownersEatTooLittle = dogs
-  .filter(dog => dog.curFood < dog.recommendedfood)
-  .map(dogs => dogs.owners)
-  .flat();
-console.log(ownersEatTooLittle);
-console.log(ownersEatTooMuch);
-
-console.log(`${ownersEatTooMuch.join(' and ')} eats too much`);
-
-console.log(`${ownersEatTooLittle.join(' and ')} eats too little`);
-
-const checkEatingOkay = dogs =>
-  dogs.curFood > dogs.recommendedfood * 0.9 &&
-  dogs.curFood < dogs.recommendedfood * 1.1;
-
-console.log(dogs.some(checkEatingOkay));
-
-const sorteddogs = dogs
-  .slice()
-  .sort((a, b) => a.recommendedfood - b.recommendedfood);
-console.log(sorteddogs);
