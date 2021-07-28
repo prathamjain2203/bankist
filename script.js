@@ -137,6 +137,17 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
     updateUI(currentaccount);
+    let timer = 300;
+    setInterval(function () {
+      if (timer >= 0) {
+        let min = Math.floor(timer / 60);
+        let sec = timer % 60;
+        timer--;
+        labelTimer.textContent = `${min}m:${sec}s`;
+      } else {
+        containerApp.style.opacity = 0;
+      }
+    }, 1000);
   }
 });
 
